@@ -5,6 +5,67 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   font-family: sans-serif;
+  background: lightslategray;
+  transition: background-color 300ms ease-in-out;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.working {
+  background: lightcoral;
+}
+
+.hidden {
+  display: none;
+}
+
+.pomodoro {
+  background: white;
+  border-radius: 10px;
+  margin: 50px 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 5);
+}
+
+.pomodoro h2{
+  font-size: 25px;
+  text-align: center;
+}
+
+.pomodoro .timer{
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.pomodoro button{
+  background: lightgreen;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+  color: #000;
+  transition: background-color 300ms ease-in-out;
+  margin: 20px auto;
+}
+
+.working .pomodoro button{
+  background: lightcoral;
+  color: white;
+}
+
+.pomodoro .controls{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.pomodoro .details {
+  margin: 02px 0;
 }
