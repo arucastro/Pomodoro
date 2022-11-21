@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useInterval from "../hooks/use-interval";
 import Timer from "./timer";
 import { Button } from "./button";
@@ -12,21 +12,39 @@ interface Props {
 
 function PomodoroTimer(props: Props) {
   const [mainTime, setMainTime] = useState(props.defaultPomodoroTime);
+  const [timeCounting, setTimeCounting] = useState(false);
+  const [working, setWorking] = useState(false);
 
-  useInterval(() => {
-    setMainTime(mainTime - 1);
-  }, 1000);
+  useEffect(() => {
+    if(working) document.body.classList.add("working");
+  }, [working]);
+
+  useInterval(
+    () => {
+      setMainTime(mainTime - 1);
+    },
+    timeCounting ? 1000 : null
+  );
+
+  const configureWork = () => {
+    setTimeCounting(true);
+    setWorking(true);
+  };
 
   return (
     <div className="pomodoro">
       <h2>You are: working</h2>
       <Timer mainTime={mainTime} />
       <div className="controls">
-        <Button text={"Teste"} className={""} />
-        <Button text={"Teste"} className={""} />
-        <Button text={"Teste"} className={""} />
+        <Button
+          text={"Start!"}
+          onClick={() => configureWork()}
+          className={""}
+        />
+        <Button text={"Stop!"} className={""} />
+        <Button text={timeCounting ? "Pause" : "Return"} onClick={()=>setTimeCounting(!timeCounting)} className={""} />
       </div>
-      <div className="details"> 
+      <div className="details">
         <p>Testando detalhes</p>
         <p>Testando detalhes</p>
         <p>Testando detalhes</p>
